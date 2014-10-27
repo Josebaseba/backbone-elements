@@ -10,7 +10,7 @@
   /* Backbone is required, if Backbone loads after this .js this file will be overwritten */
   if(typeof Backbone === 'undefined') return null;
 
-  /* Save Backbone.View.prototype and attributes to merge it before overwritting the default Backbone.View */
+  /* Save Backbone.View.prototype to merge it before overwritting the default Backbone.View */
   var viewPrototype = Backbone.View.prototype;
 
   /* Overwrite Backbone.View method just adding a call to setElements function */
@@ -40,7 +40,9 @@
       };
     }
     _.extend(child, parent, staticProps);
-    var Surrogate = function(){ this.constructor = child; };
+    var Surrogate = function(){
+      this.constructor = child;
+    };
     Surrogate.prototype = parent.prototype;
     child.prototype = new Surrogate;
     if (protoProps) _.extend(child.prototype, protoProps);
