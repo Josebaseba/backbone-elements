@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Backbone Elements Test</title>
+</head>
+<body>
+  <header>
+    <h1>BACKBONE ELEMENTS TEST</h1>
+    <h4>Check in the console to see if is getting the elements</h4>
+  </header>
+  <section id="test-elements">
+    <a href="#" id="test-link">Foo link</a>
+    <br>
+    <input href="#" id="test-input" placeholder="Foo input">
+    <h4>VALUES:</h4>
+    <p class="values-content" style="display:none;">
+      <b>Link text: </b><span data-control="link"></span>
+      <br>
+      <b>Input placeholder value: </b><span data-control="input"></span>
+      <br>
+      <b>Input value: </b><span id="input-value"></span>
+    </p>
+  </section>
+
+  <script src="jquery-2.1.1.min.js"></script>
+  <script src="underscore.js"></script>
+  <script src="backbone.js"></script>
+  <script src="../backbone.elements.js"></script>
+  <script src="testElements.js"></script>
+</body>
+</html>
