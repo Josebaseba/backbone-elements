@@ -10,7 +10,7 @@
   /* Backbone is required, if Backbone loads after this .js this file will be overwritten */
   if(typeof Backbone === 'undefined') return null;
 
-  /* Save Backbone.View.prototype and exntend method to merge it before overwritting the default Backbone.View */
+  /* Save Backbone.View.prototype and extend method to merge it before overwritting the default Backbone.View */
   var viewPrototype = Backbone.View.prototype;
   var extend = Backbone.View.extend;
 
@@ -40,7 +40,7 @@
       if(!this.elements || !_.isObject(this.elements)) return this;
       _.each(this.elements, function(value, key){
         this[value] = this.$el.find(key);
-      },this);
+      }, this);
     }
 
   });
