@@ -1,7 +1,7 @@
 backbone-elements
 =================
 
-Clean way to get view's elements inspired in Spine Framework, (less than 1KB).
+Clean way to get view's elements inspired in Spine Framework, (less than 0.7KB).
 
 If you add an 'elements' object attribute in your view, with selector (key) and element name (value), you will get each element as your view's prototype attribute. Accessible for all the view.
 
