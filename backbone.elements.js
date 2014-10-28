@@ -10,8 +10,9 @@
   /* Backbone is required, if Backbone loads after this .js this file will be overwritten */
   if(typeof Backbone === 'undefined') return null;
 
-  /* Save Backbone.View.prototype to merge it before overwritting the default Backbone.View */
+  /* Save Backbone.View.prototype and exntend method to merge it before overwritting the default Backbone.View */
   var viewPrototype = Backbone.View.prototype;
+  var extend = Backbone.View.extend;
 
   /* Overwrite Backbone.View method just adding a call to setElements function */
   Backbone.View = function(options) {
@@ -28,34 +29,11 @@
   /* Default view's options Backbone's viewOptions + 'elements' option added now */
   var viewOptions = ['model', 'collection', 'el', 'id', 'attributes', 'className', 'tagName', 'events', 'elements'];
 
-  /* Helper function to correctly set up the prototype chain, for subclasses */
-  Backbone.View.extend = function(protoProps, staticProps) {
-    var parent = this;
-    var child;
-    if(protoProps && _.has(protoProps, 'constructor')){
-      child = protoProps.constructor;
-    }else{
-      child = function(){
-        return parent.apply(this, arguments);
-      };
-    }
-    _.extend(child, parent, staticProps);
-    var Surrogate = function(){
-      this.constructor = child;
-    };
-    Surrogate.prototype = parent.prototype;
-    child.prototype = new Surrogate;
-    if (protoProps) _.extend(child.prototype, protoProps);
-    child.__super__ = parent.prototype;
-    return child;
-  };
-
   /* Add setElements method to View prototype */
   _.extend(Backbone.View.prototype, viewPrototype, {
 
     /**/
     /* setElements - function
-    /* @params - object
     /* set elements in the view context, to access with this.exampleElement
     /**/
     setElements: function(){
@@ -66,5 +44,8 @@
     }
 
   });
+
+  /* Helper function to correctly set up the prototype chain, for subclasses */
+  Backbone.View.extend = extend;
 
 })();
