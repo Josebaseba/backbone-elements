@@ -29,6 +29,9 @@
   /* Default view's options Backbone's viewOptions + 'elements' option added now */
   var viewOptions = ['model', 'collection', 'el', 'id', 'attributes', 'className', 'tagName', 'events', 'elements'];
 
+  /* Cached regex to split keys for delegate */
+  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
+
   /* Add setElements method to View prototype */
   _.extend(Backbone.View.prototype, viewPrototype, {
 
