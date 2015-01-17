@@ -10,7 +10,8 @@
   // Backbone is required before this file
   if(typeof Backbone === 'undefined') return null;
 
-  /* Save Backbone.View.prototype and extend method to merge it before overwritting the default Backbone.View */
+  // Save Backbone.View.prototype and extend method to merge it
+  // before overwritting the default Backbone.View
   var viewPrototype = Backbone.View.prototype;
   var extend = Backbone.View.extend;
 
