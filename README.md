@@ -5,7 +5,7 @@ Clean way to get view's elements inspired in Spine Framework, (less than 0.7KB).
 
 If you add an 'elements' object attribute in your view, with selector (key) and element name (value), you will get each element as your view's prototype attribute. Accessible for all the view.
 
-```
+```javascript
   var FooView = Backbone.View.extend({
 
     elements: {
@@ -17,11 +17,23 @@ If you add an 'elements' object attribute in your view, with selector (key) and 
       'span#input-value'        : '_spanInputValue'
     },
 
+    listeners: {
+      'customEvent'   : 'doSomeCoolStuff',
+      'customEventTwo': 'doSomeCoolStuffTwo',
+      'blabla'        : 'doBlaBla'
+    },
+
     initialize: function(){
       console.log(this.testLink.text(), this.$testInput.val(), this._valuesContent, '...');
       console.log('That is really clean and easy to read!');
       // Do other stuff
-    }
+    },
+
+    doSomeCoolStuff: function(){},
+
+    doSomeCoolStuffTwo: function(){},
+
+    doBlaBla: function(){}
 
   });
 
@@ -30,7 +42,7 @@ If you add an 'elements' object attribute in your view, with selector (key) and 
 vs
 ==
 
-```
+```javascript
   var FooView = Backbone.View.extend({
 
     initialize: function(){
@@ -41,9 +53,18 @@ vs
       this.spanInput = this.$('span[data-control=input]');
       this._spanInputValue = this.$('span#input-value');
       console.log(this.testLink.text(), this.$testInput.val(), this._valuesContent, '...');
+      this.listenTo(Backbone, 'customEvent', this.doSomeCoolStuff);
+      this.listenTo(Backbone, 'customEventTwo', this.doSomeCoolStuffTwo);
+      this.listenTo(Backbone, 'blabla', this.doBlaBla);
       console.log('Mmm, not bad but no so clear to read');
       // Do other stuff
-    }
+    },
+
+    doSomeCoolStuff: function(){},
+
+    doSomeCoolStuffTwo: function(){},
+
+    doBlaBla: function(){}
 
   });
 
@@ -52,10 +73,9 @@ vs
 How to use
 ==========
 
-```
+```javascript
 <script src="/js/backbone.min.js"></script>
 <script src="/js/backbone.elements.min.js"></script>
 ```
 
 Just add the script AFTER backbone.js file and you are ready to start!
-
